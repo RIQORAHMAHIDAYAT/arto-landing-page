@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <title>ARTO — Ngerti artone, ngerti uripe</title>
+    <meta
+      name="description"
+      content="ARTO adalah personal financial tracker yang membantu kamu nyatet, ngerti, ngatur, nyimpen, dan ngembangke keuangan — dengan batas pengeluaran harian dinamis."
+    />
+    <meta name="theme-color" content="#16a34a" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ARTO — Ngerti artone, ngerti uripe" />
+    <meta
+      property="og:description"
+      content="Catat keuangan, pahami pola pengeluaran, dan jaga budget dengan batas pengeluaran harian dinamis. Tersedia di Web dan Android."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Terapkan tema sebelum render untuk mencegah flash -->
+    <script>
+      try {
+        var stored = localStorage.getItem('arto-theme')
+        if (
+          stored === 'dark' ||
+          (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark')
+        }
+      } catch (e) {}
+    </script>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
