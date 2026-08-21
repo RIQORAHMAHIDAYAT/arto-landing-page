@@ -1,42 +1,10 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
+import { QRCodeSVG } from 'qrcode.react'
 import { EXPO_URL, MOBILE_APK_URL, WEB_APP_URL } from '@/config'
 import { ButtonLink } from '@/components/ui/Button'
 import { cn } from '@/lib/cn'
 
 type Platform = 'mobile' | 'web'
-
-/** Pola QR dekoratif deterministik (placeholder, bukan QR asli). */
-function createQrMatrix(size: number): boolean[][] {
-  const matrix: boolean[][] = Array.from({ length: size }, () => Array<boolean>(size).fill(false))
-
-  let seed = 987_654_321
-  const random = () => {
-    seed = (seed * 1_103_515_245 + 12_345) % 2_147_483_648
-    return seed / 2_147_483_648
-  }
-
-  for (let row = 0; row < size; row++) {
-    for (let col = 0; col < size; col++) {
-      matrix[row][col] = random() > 0.52
-    }
-  }
-
-  const drawFinder = (startRow: number, startCol: number) => {
-    for (let r = 0; r < 7; r++) {
-      for (let c = 0; c < 7; c++) {
-        const isBorder = r === 0 || r === 6 || c === 0 || c === 6
-        const isCore = r >= 2 && r <= 4 && c >= 2 && c <= 4
-        matrix[startRow + r][startCol + c] = isBorder || isCore
-      }
-    }
-  }
-
-  drawFinder(0, 0)
-  drawFinder(0, size - 7)
-  drawFinder(size - 7, 0)
-
-  return matrix
-}
 
 const MOBILE_FEATURES = [
   'Pencatatan transaksi super cepat saat bepergian.',
@@ -52,7 +20,6 @@ const WEB_FEATURES = [
 
 export function PlatformShowcase() {
   const [platform, setPlatform] = useState<Platform>('mobile')
-  const qrMatrix = useMemo(() => createQrMatrix(21), [])
 
   return (
     <section id="platform" className="scroll-mt-20 border-y border-border/60 bg-surface/30 py-20 md:py-28">
@@ -148,17 +115,31 @@ export function PlatformShowcase() {
 
               {/* Area QR */}
               <div className="flex flex-col items-center justify-center gap-3 md:border-l md:border-border md:pl-8">
-                <div className="flex h-44 w-44 items-center justify-center rounded-xl border border-border bg-background p-3 text-foreground">
-                  <svg viewBox="0 0 21 21" shapeRendering="crispEdges" className="h-full w-full" role="img" aria-label="Placeholder QR code download APK">
-                    {qrMatrix.flatMap((row, r) =>
-                      row.map((filled, c) =>
-                        filled ? <rect key={`${r}-${c}`} x={c} y={r} width={1} height={1} fill="currentColor" /> : null,
-                      ),
-                    )}
-                  </svg>
+                <div className="flex h-44 w-44 items-center justify-center rounded-xl border border-border bg-white p-3 shadow-inner">
+                  {MOBILE_APK_URL && MOBILE_APK_URL !== '#' ? (
+                    <QRCodeSVG
+                      value={MOBILE_APK_URL}
+                      size={140}
+                      level="H"
+                      includeMargin={false}
+                      imageSettings={{
+                        src: "/favicon.svg",
+                        x: undefined,
+                        y: undefined,
+                        height: 24,
+                        width: 24,
+                        excavate: true,
+                      }}
+                    />
+                  ) : (
+                    <div className="flex flex-col items-center justify-center text-center">
+                      <span className="text-2xl opacity-20">🚫</span>
+                      <p className="mt-1 text-[10px] font-bold text-muted">QR BELUM SIAP</p>
+                    </div>
+                  )}
                 </div>
                 <p className="max-w-44 text-center text-[11px] leading-snug text-muted">
-                  Scan untuk mengunduh APK. Ganti dengan QR resmi sebelum rilis.
+                  Scan untuk mengunduh APK ARTO secara langsung.
                 </p>
               </div>
             </div>

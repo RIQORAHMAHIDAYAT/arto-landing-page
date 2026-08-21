@@ -25,6 +25,12 @@ export function DynamicLimitShowcase() {
   const dailyLimit = remainingDays > 0 ? Math.round(remainingBudget / remainingDays) : 0
   const isDepleted = spent >= budget
 
+  const applyPreset = (b: number, s: number, d: number) => {
+    setBudget(b)
+    setSpent(s)
+    setRemainingDays(d)
+  }
+
   return (
     <section id="daily-limit" className="scroll-mt-20 border-y border-border/60 bg-surface/30 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -39,7 +45,35 @@ export function DynamicLimitShowcase() {
               Pernah membuat budget bulanan, lalu kehabisan uang di tengah bulan karena tidak tahu
               berapa batas aman belanja per hari?
             </p>
-            <p className="mt-3 text-base leading-relaxed text-muted">
+            
+            <div className="mt-8">
+              <p className="mb-3 text-xs font-bold text-muted uppercase">Coba Preset Skenario:</p>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() => applyPreset(1_500_000, 450_000, 20)}
+                  className="rounded-lg border border-border bg-surface px-3 py-1.5 text-xs font-bold transition-colors hover:border-primary/50 hover:bg-primary/5"
+                >
+                  🎓 Mahasiswa
+                </button>
+                <button
+                  type="button"
+                  onClick={() => applyPreset(4_000_000, 1_200_000, 18)}
+                  className="rounded-lg border border-border bg-surface px-3 py-1.5 text-xs font-bold transition-colors hover:border-primary/50 hover:bg-primary/5"
+                >
+                  💼 First Jobber
+                </button>
+                <button
+                  type="button"
+                  onClick={() => applyPreset(8_000_000, 2_500_000, 15)}
+                  className="rounded-lg border border-border bg-surface px-3 py-1.5 text-xs font-bold transition-colors hover:border-primary/50 hover:bg-primary/5"
+                >
+                  🚀 Professional
+                </button>
+              </div>
+            </div>
+
+            <p className="mt-8 text-base leading-relaxed text-muted">
               ARTO menghitung batas harian secara otomatis dan real-time dengan formula sederhana:
             </p>
 

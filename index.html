@@ -2,46 +2,43 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- SEO -->
     <title>ARTO — Ngerti artone, ngerti uripe</title>
-    <meta
-      name="description"
-      content="ARTO adalah personal financial tracker yang membantu kamu nyatet, ngerti, ngatur, nyimpen, dan ngembangke keuangan — dengan batas pengeluaran harian dinamis."
-    />
-    <meta name="theme-color" content="#16a34a" />
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="ARTO — Ngerti artone, ngerti uripe" />
+    <meta name="description" content="Personal financial tracker yang membantu kamu nyatet, ngerti, ngatur, nyimpen, dan ngembangke keuangan — lengkap dengan batas pengeluaran harian dinamis." />
+    <meta name="keywords" content="financial tracker, pencatatan keuangan, budget harian, dynamic daily limit, kelola uang, keuangan pribadi, ARTO" />
+    <meta name="author" content="ARTO Financial" />
+    <meta name="theme-color" content="#16A34A" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#22C55E" media="(prefers-color-scheme: dark)" />
+
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://arto.id/" />
     <meta property="og:title" content="ARTO — Ngerti artone, ngerti uripe" />
-    <meta
-      property="og:description"
-      content="Catat keuangan, pahami pola pengeluaran, dan jaga budget dengan batas pengeluaran harian dinamis. Tersedia di Web dan Android."
-    />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:description" content="Kelola uang lebih bijak, tanpa bikin pusing. Catat cepat, pahami pola pengeluaran, dan jaga budget dengan batas harian dinamis." />
+    <meta property="og:image" content="https://arto.id/og-image.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="ARTO" />
 
-    <!-- Terapkan tema sebelum render untuk mencegah flash -->
-    <script>
-      try {
-        var stored = localStorage.getItem('arto-theme')
-        if (
-          stored === 'dark' ||
-          (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)
-        ) {
-          document.documentElement.classList.add('dark')
-        }
-      } catch (e) {}
-    </script>
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://arto.id/" />
+    <meta property="twitter:title" content="ARTO — Ngerti artone, ngerti uripe" />
+    <meta property="twitter:description" content="Kelola uang lebih bijak, tanpa bikin pusing. Catat cepat, pahami pola pengeluaran, dan jaga budget dengan batas harian dinamis." />
+    <meta property="twitter:image" content="https://arto.id/og-image.svg" />
 
-    <!-- Font -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
   </head>
-  <body>
+  <body class="bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
