@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { WEB_APP_URL } from '@/config'
-import { useTheme } from '@/context/ThemeContext'
+import { useTheme } from '@/context/theme'
 import { ButtonLink } from '@/components/ui/Button'
 import { cn } from '@/lib/cn'
 

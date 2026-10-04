@@ -1,15 +1,7 @@
-import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
-
-type Theme = 'light' | 'dark'
+import { useCallback, useEffect, useState, type ReactNode } from 'react'
+import { ThemeContext, type Theme } from '@/context/theme'
 
 const STORAGE_KEY = 'arto-theme'
-
-interface ThemeContextValue {
-  theme: Theme
-  toggleTheme: () => void
-}
-
-const ThemeContext = createContext<ThemeContextValue | null>(null)
 
 function getInitialTheme(): Theme {
   if (typeof window === 'undefined') return 'light'
@@ -31,12 +23,4 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [])
 
   return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>
-}
-
-export function useTheme(): ThemeContextValue {
-  const context = useContext(ThemeContext)
-  if (!context) {
-    throw new Error('useTheme harus dipakai di dalam ThemeProvider')
-  }
-  return context
 }
